@@ -12,9 +12,10 @@ images = []
 measurements = []
 for line in lines:
     source_path = line[0]
-    filename = source_path.spli('/')[-1]
-    current_path = 'video_data/IMG/' + filename
+    filename = source_path.split('/')[-1]
+    current_path = './video_data/IMG/' + filename
     image = cv2.imread(current_path)
+    images.append(images)
     measurement = float(line[3])
     measurements.append(measurement)
 
@@ -30,7 +31,7 @@ model.add(Flatten(input_shape=(160,320,3)))
 model.add(Dense(1))
 
 model.compile(loss='mse', optimizer='adam')
-model.fit(X_train, y_train, validation_split=0.2, shuffle=True)
+model.fit(X_train, y_train, validation_split=0.2, shuffle=True, nb_epoch=7)
 
 # Save the model
 model.save('model.h5')
